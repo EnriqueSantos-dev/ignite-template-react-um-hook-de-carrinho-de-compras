@@ -1,13 +1,21 @@
-import { Switch, Route } from 'react-router-dom';
+import { Routes as Switch, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Cart from './pages/Cart';
+import { AuthCart } from './pages/private/AuthCart';
 
 const Routes = (): JSX.Element => {
   return (
     <Switch>
-      <Route path="/" exact component={Home} />
-      <Route path="/cart" component={Cart} />
+      <Route index element={<Home />} />
+      <Route
+        path='/cart'
+        element={
+          <AuthCart>
+            <Cart />
+          </AuthCart>
+        }
+      />
     </Switch>
   );
 };
